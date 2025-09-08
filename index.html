@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .symbol-btn.selected, .edit-mode-btn.selected {
+        .symbol-btn.selected, .edit-mode-btn.selected, .pose-option-btn.selected {
             background-color: #3b82f6; /* bg-blue-600 */
             color: white;
             border-color: #3b82f6; /* border-blue-600 */
@@ -40,7 +40,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        /* Custom Toast Notification */
         .toast {
             position: fixed;
             top: 20px;
@@ -60,7 +59,6 @@
             opacity: 1;
             top: 40px;
         }
-        /* Slideshow styles */
         .slideshow-container {
             max-width: 1000px;
             position: relative;
@@ -85,30 +83,25 @@
     <!-- Login Screen -->
     <div id="login-screen" class="min-h-screen flex items-center justify-center bg-slate-100 p-4">
         <div class="w-full max-w-sm bg-white rounded-2xl shadow-xl p-8">
-            <!-- Kolom Login -->
             <div>
                 <div class="text-center mb-8">
                     <h1 class="text-3xl font-bold text-blue-600">Marketing Booster</h1>
-                    <p class="text-slate-500 mt-2">Silakan masukkan password Anda.</p>
+                    <p class="text-slate-500 mt-2">Please enter your password to continue.</p>
                 </div>
                 <form id="login-form">
                     <div>
                         <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
                         <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" required>
                     </div>
-                    <p id="login-error" class="text-red-500 text-sm mt-2 text-center" style="display: none;">Password salah.</p>
+                    <p id="login-error" class="text-red-500 text-sm mt-2 text-center" style="display: none;">Incorrect password.</p>
                     <div class="mt-6">
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors text-lg">Masuk</button>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors text-lg">Log In</button>
                     </div>
                 </form>
-                <p class="text-xs text-slate-400 text-center mt-6">Dapatkan akses eksklusif dengan membeli E-Book "Marketing Persepsi".</p>
+                <p class="text-xs text-slate-400 text-center mt-6">Get exclusive access by purchasing the "Perception Marketing" E-Book.</p>
             </div>
-            
-            <!-- Kolom Slideshow (Dipindahkan ke bawah) -->
             <div class="mt-12">
-                <div id="login-slideshow-container" class="slideshow-container rounded-lg overflow-hidden">
-                    <!-- Login slides akan diisi oleh JavaScript -->
-                </div>
+                <div id="login-slideshow-container" class="slideshow-container rounded-lg overflow-hidden"></div>
             </div>
         </div>
     </div>
@@ -118,130 +111,120 @@
         <div class="container mx-auto p-4 md:p-8 flex flex-col items-center">
             <header class="text-center mb-8">
                 <h1 class="text-4xl md:text-5xl font-bold text-blue-600">Marketing Booster</h1>
-                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Ciptakan target marketmu hanya dengan sekali klik.</p>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Create your target market with a single click.</p>
             </header>
 
             <main class="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden min-h-[500px]">
-
-                <!-- Step 1: Unggah Kanvas -->
                 <div id="step-1" class="step-card active">
                     <div class="text-center">
-                        <h2 class="text-2xl font-semibold mb-2">Langkah 1: Unggah "Kanvas" Anda</h2>
-                        <p class="text-slate-500 mb-6">Pilih foto yang ingin Anda ubah persepsinya.</p>
+                        <h2 class="text-2xl font-semibold mb-2">Step 1: Upload Your Canvas</h2>
+                        <p class="text-slate-500 mb-6">Select a photo you want to transform.</p>
                         <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-10 md:p-16 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <svg class="mx-auto h-12 w-12 text-slate-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <p class="mt-4 text-slate-600">Seret & lepas gambar di sini, atau <span class="font-semibold text-blue-600">klik untuk memilih file</span>.</p>
+                            <svg class="mx-auto h-12 w-12 text-slate-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                            <p class="mt-4 text-slate-600">Drag & drop an image here, or <span class="font-semibold text-blue-600">click to browse files</span>.</p>
                             <p class="text-xs text-slate-500 mt-1">PNG, JPG, WEBP</p>
                         </div>
                         <input type="file" id="file-input" class="hidden" accept="image/png, image/jpeg, image/webp">
                     </div>
-                     <!-- Galeri Hasil Kreasi -->
                     <div class="mt-12">
-                        <h3 class="text-lg font-semibold text-center text-slate-700 mb-4">Galeri Hasil Kreasi</h3>
-                        <div id="main-slideshow-container" class="slideshow-container rounded-lg overflow-hidden">
-                            <!-- Slides akan diisi oleh JavaScript -->
-                        </div>
+                        <h3 class="text-lg font-semibold text-center text-slate-700 mb-4">Creation Gallery</h3>
+                        <div id="main-slideshow-container" class="slideshow-container rounded-lg overflow-hidden"></div>
                     </div>
                 </div>
 
-                <!-- Step 2: Pilih Simbol Visual & Edit -->
                 <div id="step-2" class="step-card">
-                     <button onclick="goToStep(1)" class="absolute top-4 left-6 text-sm text-slate-600 hover:text-blue-600 font-medium">← Kembali</button>
+                     <button onclick="window.location.reload()" class="absolute top-4 left-6 text-sm text-slate-600 hover:text-blue-600 font-medium">← Back</button>
                     <div class="grid md:grid-cols-2 gap-8 items-start">
-                        <div class="text-center md:text-left">
-                            <h2 class="text-2xl font-semibold mb-2">Langkah 2: Pilih Opsi & Atur Detail</h2>
-                            <p class="text-slate-500 mb-6">Pilih aksi yang ingin Anda lakukan pada gambar.</p>
+                        <div>
+                            <h2 class="text-2xl font-semibold mb-2">Step 2: Choose Options & Set Details</h2>
+                            <p class="text-slate-500 mb-6">Select the action you want to perform on the image.</p>
                             
-                            <div id="symbol-container" style="display: none;">
-                                <!-- Simbol akan di-generate oleh JS -->
-                            </div>
-
                             <div id="edit-mode-container" class="mt-4">
-                                <label class="block text-sm font-medium text-slate-700">Pilih Aksi:</label>
+                                <label class="block text-sm font-medium text-slate-700">Select Action:</label>
                                 <div class="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-2">
-                                    <button id="add-btn" class="edit-mode-btn selected border-2 rounded-md p-2 text-sm font-medium text-center">
-                                        ➕ Tambah Subjek
-                                    </button>
-                                    <button id="replace-btn" class="edit-mode-btn border-2 rounded-md p-2 text-sm font-medium text-center">
-                                        🔄 Ganti Objek
-                                    </button>
-                                    <button id="background-btn" class="edit-mode-btn border-2 rounded-md p-2 text-sm font-medium text-center">
-                                        🖼️ Ubah Background
-                                    </button>
+                                    <button id="add-btn" class="edit-mode-btn selected border-2 rounded-md p-2 text-sm font-medium text-center">➕ Add Subject</button>
+                                    <button id="replace-btn" class="edit-mode-btn border-2 rounded-md p-2 text-sm font-medium text-center">🔄 Replace Object</button>
+                                    <button id="background-btn" class="edit-mode-btn border-2 rounded-md p-2 text-sm font-medium text-center">🖼️ Change Background</button>
                                 </div>
                             </div>
-
+                            
                             <div id="subject-options-container">
                                 <div class="mt-4">
-                                    <p class="block text-sm font-medium text-slate-700 mb-2">Pilih kategori objek:</p>
+                                    <p class="block text-sm font-medium text-slate-700 mb-2">Select object category:</p>
                                     <div id="symbol-buttons" class="flex flex-wrap gap-2"></div>
                                 </div>
+                                <div id="model-pro-options-container" class="mt-4" style="display: none;">
+                                    <label class="block text-sm font-medium text-slate-700">Pose Options:</label>
+                                    <div class="mt-2 grid grid-cols-2 gap-2">
+                                        <button id="model-pro-pose-candid" class="pose-option-btn border-2 rounded-md p-2 text-sm font-medium text-center">📸 Candid Shot</button>
+                                        <button id="model-pro-pose-camera" class="pose-option-btn border-2 rounded-md p-2 text-sm font-medium text-center">👤 Look at Camera</button>
+                                    </div>
+                                    <div class="mt-4 flex items-center">
+                                        <input id="model-pro-dynamic" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                        <label for="model-pro-dynamic" class="ml-2 block text-sm text-slate-900">Dynamic Clothing</label>
+                                    </div>
+                                </div>
                                 <div id="license-plate-container" class="mt-4" style="display: none;">
-                                     <label class="block text-sm font-medium text-slate-700">Plat Nomor (Opsional):</label>
+                                     <label class="block text-sm font-medium text-slate-700">License Plate (Optional):</label>
                                      <div class="grid grid-cols-3 gap-2 mt-1">
                                         <input type="text" id="plate-1" placeholder="B" maxlength="2" class="text-center w-full px-2 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 uppercase">
                                         <input type="text" id="plate-2" placeholder="1234" maxlength="4" class="text-center w-full px-2 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 uppercase">
                                         <input type="text" id="plate-3" placeholder="XYZ" maxlength="3" class="text-center w-full px-2 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 uppercase">
                                      </div>
                                 </div>
-                                <div class="mt-4">
-                                    <label for="symbol-details" class="block text-sm font-medium text-slate-700">Detail Spesifik Subjek (opsional):</label>
-                                    <input type="text" id="symbol-details" placeholder="Contoh: Nissan GT-R putih" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                <div id="symbol-details-container" class="mt-4">
+                                    <label for="symbol-details" class="block text-sm font-medium text-slate-700">Specific Details:</label>
+                                    <input type="text" id="symbol-details" placeholder="e.g., flannel shirt, red dress" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                             </div>
 
                             <div id="background-options-container" class="mt-4" style="display: none;">
                                 <div>
-                                    <label for="background-details" class="block text-sm font-medium text-slate-700">Deskripsi Background Baru:</label>
-                                    <input type="text" id="background-details" placeholder="Contoh: pantai saat senja, interior kafe modern" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-                                </div>
-                                <div id="drawing-controls" class="mt-4 items-center gap-4" style="display: none;">
-                                    <label for="brush-size" class="text-sm font-medium text-slate-700 shrink-0">Ukuran Kuas:</label>
-                                    <input type="range" id="brush-size" min="5" max="50" value="20" class="w-full">
-                                    <button id="clear-drawing-btn" class="text-sm bg-slate-200 hover:bg-slate-300 rounded-md px-3 py-1 shrink-0">Hapus</button>
+                                    <label for="background-details" class="block text-sm font-medium text-slate-700">New Background Description:</label>
+                                    <input type="text" id="background-details" placeholder="e.g., beach at sunset" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div class="mt-4 flex items-center">
                                     <input id="blur-background-checkbox" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                                     <label for="blur-background-checkbox" class="ml-2 block text-sm text-slate-900">Blur Background</label>
                                 </div>
                             </div>
+                            
+                            <div id="drawing-controls" class="mt-4 items-center gap-4" style="display: none;">
+                                <label for="brush-size" class="text-sm font-medium text-slate-700 shrink-0">Brush Size:</label>
+                                <input type="range" id="brush-size" min="5" max="50" value="20" class="w-full">
+                                <button id="clear-drawing-btn" class="text-sm bg-slate-200 hover:bg-slate-300 rounded-md px-3 py-1 shrink-0">Clear</button>
+                            </div>
 
-                            <p id="instruction-text" class="mt-6 text-blue-600 font-semibold animate-pulse">👆 Klik untuk menandai titik <strong id="marker-target-text">belakang</strong> objek.</p>
+                            <p id="instruction-text" class="mt-6 text-blue-600 font-semibold animate-pulse">👆 Click to mark the <strong id="marker-target-text">back</strong> point of the object.</p>
                         </div>
-                        <div id="canvas-container" class="relative w-full rounded-lg overflow-hidden border-2 border-slate-200 cursor-crosshair">
+                        <div id="canvas-container" class="relative w-full rounded-lg overflow-hidden border-2 border-slate-200">
                             <canvas id="canvas"></canvas>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 3: Generate & Sempurnakan -->
                 <div id="step-3" class="step-card">
                     <div class="text-center">
-                        <h2 class="text-2xl font-semibold mb-2">Langkah 3: Generate & Sempurnakan</h2>
-                        <p class="text-slate-500 mb-6">Inilah hasil kreasi persepsi baru Anda!</p>
-
+                        <h2 class="text-2xl font-semibold mb-2">Step 3: Generate & Refine</h2>
+                        <p class="text-slate-500 mb-6">Here is your new perception creation!</p>
                         <div id="loading-container" class="flex flex-col items-center justify-center p-8 text-center" style="display: none;">
                             <div class="loader"></div>
-                            <p class="text-slate-600 mt-4 font-semibold">AI sedang meracik keajaiban... Mohon tunggu.</p>
-                             <p class="text-slate-500 text-sm mt-1">Proses ini bisa memakan waktu hingga 1 menit.</p>
+                            <p class="text-slate-600 mt-4 font-semibold">The AI is working its magic... Please wait.</p>
+                            <p class="text-slate-500 text-sm mt-1">This process can take up to 1 minute.</p>
                         </div>
-
                         <div id="result-container" class="grid md:grid-cols-2 gap-4 items-center" style="display: none;">
                             <div>
-                                <h3 class="font-semibold mb-2">Sebelum</h3>
+                                <h3 class="font-semibold mb-2">Before</h3>
                                 <img id="original-image-preview" class="rounded-lg w-full">
                             </div>
                             <div>
-                                <h3 class="font-semibold mb-2 text-blue-600">Sesudah</h3>
+                                <h3 class="font-semibold mb-2 text-blue-600">After</h3>
                                 <img id="generated-image" class="rounded-lg w-full">
                             </div>
                         </div>
-                        
                         <div id="action-buttons" class="mt-8 flex justify-center gap-4" style="display: none;">
-                            <button onclick="goToStep(1)" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">Mulai Lagi</button>
-                            <a id="download-btn" href="#" download="perception_engine_result.png" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">Unduh Hasil</a>
+                            <button onclick="window.location.reload()" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">Start Over</button>
+                            <a id="download-btn" href="#" download="marketing_booster_result.png" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">Download Result</a>
                         </div>
                     </div>
                 </div>
@@ -255,9 +238,8 @@
         let originalImage = null;
         let originalImageBase64 = null;
         let selectedSymbol = null;
-        let editMode = 'add'; // 'add', 'replace', or 'background'
+        let editMode = 'add';
         let perspectivePoints = { back: null, front: null };
-        let generatedPerspective = '';
         let mainSlideIndex = 0;
         let loginSlideIndex = 0;
         let isDrawing = false;
@@ -293,26 +275,28 @@
         const drawingControls = document.getElementById('drawing-controls');
         const brushSizeSlider = document.getElementById('brush-size');
         const clearDrawingBtn = document.getElementById('clear-drawing-btn');
+        const modelProOptionsContainer = document.getElementById('model-pro-options-container');
         
         let maskCanvas = document.createElement('canvas');
         let maskCtx = maskCanvas.getContext('2d');
 
         // --- Symbol Data ---
-        const symbols = [ 'Manusia', 'Mobil', 'Motor', 'Bangunan', 'Pohon', 'Meja', 'Kursi', 'Makanan', 'Minuman', 'Hewan', 'Tas', 'Jam Tangan', 'Gunung', 'Pantai', 'Langit' ];
-        const vehicleSymbols = ['Mobil', 'Motor'];
+        const symbols = [ 'Pro Model', 'Person', 'Car', 'Motorcycle', 'Building', 'Tree', 'Table', 'Chair', 'Food', 'Drink', 'Animal', 'Bag', 'Watch' ];
+        const vehicleSymbols = ['Car', 'Motorcycle'];
+        const humanoidSymbols = ['Pro Model', 'Person'];
 
         // --- Slideshow Data ---
         const mainSlideshowData = [
-            { img: 'https://placehold.co/800x450/6366f1/ffffff?text=Kafe+Ramai+Pengunjung', caption: 'Kafe sepi menjadi ramai dan menarik.' },
-            { img: 'https://placehold.co/800x450/10b981/ffffff?text=Produk+di+Pegunungan', caption: 'Produk ditampilkan dengan latar alam yang premium.' },
-            { img: 'https://placehold.co/800x450/ef4444/ffffff?text=Garasi+dengan+Mobil+Sport', caption: 'Garasi kosong diisi dengan mobil impian.' },
-            { img: 'https://placehold.co/800x450/f59e0b/ffffff?text=Wanita+di+Menara+Eiffel', caption: 'Menambahkan orang untuk menciptakan cerita visual.' }
+            { img: 'https://placehold.co/800x450/6366f1/ffffff?text=Busy+Cafe', caption: 'Turn a quiet cafe into a bustling, attractive spot.' },
+            { img: 'https://placehold.co/800x450/10b981/ffffff?text=Product+in+Nature', caption: 'Showcase products against a premium, natural backdrop.' },
+            { img: 'https://placehold.co/800x450/ef4444/ffffff?text=Garage+with+Sports+Car', caption: 'Fill an empty garage with a dream car.' },
+            { img: 'https://placehold.co/800x450/f59e0b/ffffff?text=Woman+at+Eiffel+Tower', caption: 'Add people to create compelling visual stories.' }
         ];
         const loginSlideshowData = [
-            { img: 'https://placehold.co/600x400/e0e7ff/3730a3?text=Kontrol+Persepsi+Brand', caption: 'Kendalikan sepenuhnya bagaimana pasar melihat brand dan produk Anda.' },
-            { img: 'https://placehold.co/600x400/d1fae5/059669?text=Hemat+Biaya+Marketing', caption: 'Ciptakan visual profesional tanpa perlu sewa fotografer atau model mahal.' },
-            { img: 'https://placehold.co/600x400/fefce8/ca8a04?text=Tanpa+Keahlian+Teknis', caption: 'Ubah gambar hanya dengan beberapa klik, semudah memilih menu.' },
-            { img: 'https://placehold.co/600x400/fee2e2/be123c?text=Tingkatkan+Konversi', caption: 'Tampilkan produk dalam skenario ideal untuk memicu keputusan pembelian.' }
+            { img: 'https://placehold.co/600x400/e0e7ff/3730a3?text=Control+Brand+Perception', caption: 'Take full control of how the market perceives your brand and products.' },
+            { img: 'https://placehold.co/600x400/d1fae5/059669?text=Save+on+Marketing+Costs', caption: 'Create professional visuals without hiring expensive photographers or models.' },
+            { img: 'https://placehold.co/600x400/fefce8/ca8a04?text=No+Technical+Skills+Needed', caption: 'Transform images with just a few clicks, as easy as choosing from a menu.' },
+            { img: 'https://placehold.co/600x400/fee2e2/be123c?text=Increase+Conversions', caption: 'Display products in their ideal scenarios to trigger purchase decisions.' }
         ];
 
         // --- Utility Functions ---
@@ -325,20 +309,26 @@
         function resetPerspective() {
             perspectivePoints = { back: null, front: null };
             if (originalImage) redrawCanvas();
-            markerTargetText.textContent = 'belakang';
+            const markerWord = humanoidSymbols.includes(selectedSymbol) ? 'top' : 'back';
+            markerTargetText.textContent = markerWord;
+            instructionText.innerHTML = `👆 Click to mark the <strong id="marker-target-text">${markerWord}</strong> point of the object.`;
+            instructionText.classList.add('animate-pulse', 'text-blue-600');
+            instructionText.classList.remove('text-green-600');
             let generateBtn = document.getElementById('generate-btn');
             if (generateBtn) generateBtn.remove();
         }
 
+        function resetStateForMode() {
+            resetPerspective();
+            clearDrawing();
+        }
+        
         function clearDrawing() {
             if (originalImage) redrawCanvas(); 
             maskCtx.fillStyle = 'black';
             maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
             let generateBtn = document.getElementById('generate-btn');
             if (generateBtn) generateBtn.remove();
-            instructionText.innerHTML = '🖌️ Gambar siluet pada subjek yang ingin dipertahankan.';
-            instructionText.classList.add('animate-pulse', 'text-blue-600');
-            instructionText.classList.remove('text-green-600');
         }
 
         // --- Event Listeners ---
@@ -352,21 +342,22 @@
             buttons[editMode].classList.add('selected');
 
             const isSubjectMode = editMode === 'add' || editMode === 'replace';
+            
             subjectOptionsContainer.style.display = isSubjectMode ? 'block' : 'none';
             backgroundOptionsContainer.style.display = editMode === 'background' ? 'block' : 'none';
             drawingControls.style.display = editMode === 'background' ? 'flex' : 'none';
             canvasContainer.style.cursor = editMode === 'background' ? 'crosshair' : 'default';
 
-            if (originalImage) redrawCanvas();
-            resetPerspective();
-            clearDrawing();
+            resetStateForMode();
             
-            if (isSubjectMode) {
-                instructionText.innerHTML = `👆 Klik untuk menandai titik <strong id="marker-target-text">belakang</strong> objek.`;
+            if (editMode === 'background') {
+                instructionText.innerHTML = '🖌️ Draw a silhouette over the subject you want to keep.';
                 instructionText.classList.add('animate-pulse', 'text-blue-600');
                 instructionText.classList.remove('text-green-600');
-            } else { // Background mode
-                instructionText.innerHTML = '🖌️ Gambar siluet pada subjek yang ingin dipertahankan.';
+            } else if (isSubjectMode) {
+                const markerWord = humanoidSymbols.includes(selectedSymbol) ? 'top' : 'back';
+                markerTargetText.textContent = markerWord;
+                instructionText.innerHTML = `👆 Click to mark the <strong id="marker-target-text">${markerWord}</strong> point of the object.`;
                 instructionText.classList.add('animate-pulse', 'text-blue-600');
                 instructionText.classList.remove('text-green-600');
             }
@@ -375,14 +366,7 @@
         // --- Navigation ---
         function goToStep(stepNumber, callback) {
             if (stepNumber === 1) {
-                steps[currentStep].classList.remove('active');
-                steps[1].classList.add('active');
-                currentStep = 1;
-                document.getElementById('file-input').value = "";
-                originalImage = null;
-                originalImageBase64 = null;
-                selectedSymbol = null;
-                resetPerspective();
+                window.location.reload();
                 return;
             }
             steps[currentStep].classList.remove('active');
@@ -409,7 +393,7 @@
 
         function handleFile(file) {
             if (!file.type.startsWith('image/')) {
-                showToast('Harap pilih file gambar.');
+                showToast('Please select an image file.');
                 return;
             }
             const reader = new FileReader();
@@ -422,7 +406,7 @@
                     goToStep(2, () => {
                         canvasContainer.style.aspectRatio = img.width / img.height;
                         const containerWidth = canvasContainer.clientWidth;
-                        if (containerWidth === 0) { showToast("Gagal memuat pratinjau gambar."); return; }
+                        if (containerWidth === 0) { showToast("Failed to load image preview."); return; }
                         const scale = containerWidth / img.width;
                         canvas.width = containerWidth;
                         canvas.height = img.height * scale;
@@ -471,13 +455,24 @@
         // --- Step 2: Symbol, Marker & Perspective ---
         function populateSymbols() {
             symbolButtons.innerHTML = symbols.map(s => `<button class="symbol-btn border-2 border-slate-300 rounded-full px-4 py-1 text-sm font-medium hover:bg-slate-100">${s}</button>`).join('');
+            
             document.querySelectorAll('.symbol-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.symbol-btn').forEach(b => b.classList.remove('selected'));
                     btn.classList.add('selected');
                     selectedSymbol = btn.innerText;
+                    
                     licensePlateContainer.style.display = vehicleSymbols.includes(selectedSymbol) ? 'block' : 'none';
-                    resetPerspective();
+                    modelProOptionsContainer.style.display = selectedSymbol === 'Pro Model' ? 'block' : 'none';
+                    
+                    updateEditModeUI();
+                });
+            });
+
+            document.querySelectorAll('.pose-option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.pose-option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
                 });
             });
         }
@@ -488,8 +483,8 @@
             ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
             if (editMode === 'add' || editMode === 'replace') {
                 const { back, front } = perspectivePoints;
-                if (back) drawMarker(back, 'B');
-                if (front) drawMarker(front, 'F');
+                if (back) drawMarker(back, humanoidSymbols.includes(selectedSymbol) ? 'T' : 'B');
+                if (front) drawMarker(front, humanoidSymbols.includes(selectedSymbol) ? 'B' : 'F');
                 if (back && front) drawArrow(back, front);
             }
         }
@@ -529,23 +524,26 @@
             ctx.fill();
         }
 
-        function getPerspectiveDescription(p1, p2) {
+        function getPerspectiveDescription(p1, p2, isHumanoid) {
+            if (isHumanoid) {
+                return `The subject should be oriented along the line from point T (top) to point B (bottom).`
+            }
             const dx = p2.x - p1.x;
             const dy = p2.y - p1.y;
             const angle = Math.atan2(-dy, dx) * 180 / Math.PI;
             let angleDesc;
-            if (angle >= -22.5 && angle < 22.5) angleDesc = "menghadap ke kanan";
-            else if (angle >= 22.5 && angle < 67.5) angleDesc = "menghadap serong kanan-atas";
-            else if (angle >= 67.5 && angle < 112.5) angleDesc = "menghadap ke atas (menjauh dari kamera)";
-            else if (angle >= 112.5 && angle < 157.5) angleDesc = "menghadap serong kiri-atas";
-            else if (angle >= 157.5 || angle < -157.5) angleDesc = "menghadap ke kiri";
-            else if (angle >= -157.5 && angle < -112.5) angleDesc = "menghadap serong kiri-bawah";
-            else if (angle >= -112.5 && angle < -67.5) angleDesc = "menghadap ke bawah (menuju kamera)";
-            else if (angle >= -67.5 && angle < -22.5) angleDesc = "menghadap serong kanan-bawah";
-            return `dilihat dari perspektif ${angleDesc}`;
+            if (angle >= -22.5 && angle < 22.5) angleDesc = "facing right";
+            else if (angle >= 22.5 && angle < 67.5) angleDesc = "facing top-right";
+            else if (angle >= 67.5 && angle < 112.5) angleDesc = "facing away from the camera";
+            else if (angle >= 112.5 && angle < 157.5) angleDesc = "facing top-left";
+            else if (angle >= 157.5 || angle < -157.5) angleDesc = "facing left";
+            else if (angle >= -157.5 && angle < -112.5) angleDesc = "facing bottom-left";
+            else if (angle >= -112.5 && angle < -67.5) angleDesc = "facing towards the camera";
+            else if (angle >= -67.5 && angle < -22.5) angleDesc = "facing bottom-right";
+            return `seen from a perspective ${angleDesc}`;
         }
         
-        // Drawing Logic
+        // --- Drawing & Point Marking Logic ---
         canvas.addEventListener('mousedown', (e) => {
             if (editMode !== 'background') return;
             isDrawing = true;
@@ -554,15 +552,17 @@
         
         canvas.addEventListener('mousemove', (e) => {
             if (!isDrawing || editMode !== 'background') return;
-            // Draw on visible canvas for feedback
-            ctx.strokeStyle = 'rgba(59, 130, 246, 0.7)';
+
+            ctx.globalAlpha = 0.5;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
             ctx.lineWidth = brushSize;
             ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
             ctx.lineTo(e.offsetX, e.offsetY);
             ctx.stroke();
-            // Draw on hidden mask canvas
+            ctx.globalAlpha = 1.0;
+            
             maskCtx.strokeStyle = 'white';
             maskCtx.lineWidth = brushSize;
             maskCtx.lineCap = 'round';
@@ -572,7 +572,7 @@
             maskCtx.stroke();
             [lastX, lastY] = [e.offsetX, e.offsetY];
             if (!document.getElementById('generate-btn')) {
-                instructionText.innerHTML = '✅ Lanjutkan menggambar atau klik generate.';
+                instructionText.innerHTML = '✅ Continue drawing or click generate.';
                 instructionText.classList.remove('animate-pulse', 'text-blue-600');
                 instructionText.classList.add('text-green-600');
                 createGenerateButton();
@@ -582,23 +582,32 @@
         canvas.addEventListener('mouseup', () => isDrawing = false);
         canvas.addEventListener('mouseout', () => isDrawing = false);
         brushSizeSlider.addEventListener('input', (e) => brushSize = e.target.value);
-        clearDrawingBtn.addEventListener('click', clearDrawing);
+        clearDrawingBtn.addEventListener('click', () => {
+             if (editMode === 'background') {
+                 clearDrawing();
+             }
+        });
 
         canvas.addEventListener('click', (e) => {
             if (editMode === 'background') return;
-            if (!selectedSymbol) { showToast('Harap pilih kategori objek terlebih dahulu!'); return; }
+            if (!selectedSymbol) { showToast('Please select an object category first!'); return; }
+            
             const rect = canvas.getBoundingClientRect();
             const point = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+
+            const isHumanoid = humanoidSymbols.includes(selectedSymbol);
+            const firstMarkerWord = isHumanoid ? 'top' : 'back';
+            const secondMarkerWord = isHumanoid ? 'bottom' : 'front';
 
             if (!perspectivePoints.back) {
                 perspectivePoints.back = point;
                 redrawCanvas();
-                markerTargetText.textContent = 'depan';
-                instructionText.innerHTML = `👆 Sekarang, klik untuk menandai titik <strong id="marker-target-text">depan</strong> objek.`;
+                markerTargetText.textContent = secondMarkerWord;
+                instructionText.innerHTML = `👆 Now, click to mark the <strong id="marker-target-text">${secondMarkerWord}</strong> point of the object.`;
             } else if (!perspectivePoints.front) {
                 perspectivePoints.front = point;
                 redrawCanvas();
-                instructionText.innerHTML = '✅ Perspektif diatur! Siap untuk generate. <button id="reset-marker" class="text-xs underline ml-2">Ulangi</button>';
+                instructionText.innerHTML = '✅ Perspective set! Ready to generate. <button id="reset-marker" class="text-xs underline ml-2">Reset</button>';
                 instructionText.classList.remove('animate-pulse', 'text-blue-600');
                 instructionText.classList.add('text-green-600');
                 document.getElementById('reset-marker').addEventListener('click', resetPerspective);
@@ -607,8 +616,8 @@
                  resetPerspective();
                  perspectivePoints.back = point;
                  redrawCanvas();
-                 markerTargetText.textContent = 'depan';
-                 instructionText.innerHTML = `👆 Sekarang, klik untuk menandai titik <strong id="marker-target-text">depan</strong> objek.`;
+                 markerTargetText.textContent = secondMarkerWord;
+                 instructionText.innerHTML = `👆 Now, click to mark the <strong id="marker-target-text">${secondMarkerWord}</strong> point of the object.`;
             }
         });
 
@@ -616,7 +625,7 @@
             const generateBtn = document.createElement('button');
             generateBtn.id = 'generate-btn';
             generateBtn.className = 'w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors text-lg';
-            generateBtn.innerText = 'Generate Gambar Sekarang →';
+            generateBtn.innerText = 'Generate Image Now →';
             instructionText.parentNode.insertBefore(generateBtn, instructionText.nextSibling);
             generateBtn.addEventListener('click', generateImage);
         }
@@ -628,27 +637,13 @@
             resultContainer.style.display = 'none';
             actionButtons.style.display = 'none';
 
-            let promptText;
             let payload;
             const realismRules = "ultra photorealistic, 8k, match the lighting, shadows, and perspective of the original photo perfectly. Blend seamlessly.";
+            const facePreservationRule = "CRITICAL RULE: The person's face, facial expression, hair, and skin tone MUST remain completely unchanged and identical to the original photo."
 
             if (editMode === 'add' || editMode === 'replace') {
-                const symbolDetails = document.getElementById('symbol-details').value;
-                let licensePlate = '';
-                if (vehicleSymbols.includes(selectedSymbol)) {
-                    const p1 = document.getElementById('plate-1').value;
-                    const p2 = document.getElementById('plate-2').value;
-                    const p3 = document.getElementById('plate-3').value;
-                    if (p1 || p2 || p3) licensePlate = ` dengan plat nomor ${p1} ${p2} ${p3}`.trim();
-                }
-                const fullSubjectDescription = `${symbolDetails || selectedSymbol}${licensePlate}`;
-                generatedPerspective = getPerspectiveDescription(perspectivePoints.back, perspectivePoints.front);
-
-                if (editMode === 'add') {
-                    promptText = `INSTRUCTION: Add a new subject to the image. TARGET_LOCATION: The area between the 'B' (back) and 'F' (front) markers, following the arrow's direction. SUBJECT_DESCRIPTION: A ${fullSubjectDescription}, ${generatedPerspective}. REALISM_RULES: ${realismRules} Do not change the background.`;
-                } else { // replace
-                    promptText = `INSTRUCTION: Identify the existing object at the location and replace it. TARGET_LOCATION: The area between the 'B' (back) and 'F' (front) markers, following the arrow's direction. REPLACEMENT_SUBJECT_DESCRIPTION: A ${fullSubjectDescription}, ${generatedPerspective}. REALISM_RULES: ${realismRules} Do not change the background.`;
-                }
+                let apiParts = [];
+                let maskImageBase64;
                 
                 const subjectMaskCanvas = document.createElement('canvas');
                 subjectMaskCanvas.width = canvas.width;
@@ -658,40 +653,47 @@
                 smCtx.fillRect(0, 0, subjectMaskCanvas.width, subjectMaskCanvas.height);
                 smCtx.globalCompositeOperation = 'destination-out';
                 const midPoint = { x: (perspectivePoints.back.x + perspectivePoints.front.x) / 2, y: (perspectivePoints.back.y + perspectivePoints.front.y) / 2 };
-                const radius = Math.hypot(perspectivePoints.front.x - perspectivePoints.back.x, perspectivePoints.front.y - perspectivePoints.back.y) / 2 + 20;
+                const radius = Math.hypot(perspectivePoints.front.x - perspectivePoints.back.x, perspectivePoints.front.y - perspectivePoints.back.y);
                 smCtx.beginPath();
-                smCtx.arc(midPoint.x, midPoint.y, radius, 0, 2 * Math.PI);
+                smCtx.ellipse(midPoint.x, midPoint.y, radius / 2 + 15, radius / 2 + 15, 0, 0, 2 * Math.PI);
                 smCtx.fill();
-                const maskImageBase64 = subjectMaskCanvas.toDataURL('image/png').split(',')[1];
+                maskImageBase64 = subjectMaskCanvas.toDataURL('image/png').split(',')[1];
                 
-                payload = {
-                    contents: [{
-                        parts: [
-                            { "text": promptText },
-                            { "inlineData": { "mimeType": "image/png", "data": originalImageBase64.split(',')[1] } },
-                            { "inlineData": { "mimeType": "image/png", "data": maskImageBase64 } }
-                        ]
-                    }],
-                    generationConfig: { responseModalities: ["IMAGE"] }
-                };
+                const isHumanoid = humanoidSymbols.includes(selectedSymbol);
+                const symbolDetails = document.getElementById('symbol-details').value;
+                let fullSubjectDescription = symbolDetails || selectedSymbol;
+                if (vehicleSymbols.includes(selectedSymbol)) {
+                    const p1 = document.getElementById('plate-1').value;
+                    const p2 = document.getElementById('plate-2').value;
+                    const p3 = document.getElementById('plate-3').value;
+                    if (p1 || p2 || p3) fullSubjectDescription += ` with license plate ${p1} ${p2} ${p3}`.trim();
+                }
+                let perspectiveInstruction = getPerspectiveDescription(perspectivePoints.back, perspectivePoints.front, isHumanoid);
+                let finalPrompt;
+                
+                if (selectedSymbol === 'Pro Model') {
+                    let poseInstruction = (document.getElementById('model-pro-pose-candid').classList.contains('selected')) ? 'The model should be in a professional, high-fashion, candid pose, not looking at the camera.' : (document.getElementById('model-pro-pose-camera').classList.contains('selected')) ? 'The model should be in a professional, high-fashion pose, looking directly at the camera.' : 'The model must always strike a professional, high-fashion pose.';
+                    let dynamicInstruction = document.getElementById('model-pro-dynamic').checked ? 'The clothing on the model should appear dynamic, with natural folds and a sense of movement, not stiff.' : '';
+                    finalPrompt = `INSTRUCTION: Replace the mannequin or object at the target location (marked by the mask) with a realistic, full-body professional fashion model. The model should be wearing this outfit: ${symbolDetails}. ${poseInstruction} ${dynamicInstruction} The generated image should be a full body shot including the model's feet if the framing allows. Do not change the background. ${perspectiveInstruction}. ${realismRules}`;
+                } else {
+                    const actionWord = editMode === 'add' ? 'Add a new subject to the masked area' : 'Identify the existing object at the masked area and replace it with';
+                    const extraRule = isHumanoid ? `${facePreservationRule} Do not change the background.` : 'Do not change the background.';
+                    finalPrompt = `INSTRUCTION: ${actionWord}. SUBJECT_DESCRIPTION: A ${fullSubjectDescription}, ${perspectiveInstruction}. REALISM_RULES: ${realismRules} ${extraRule}`;
+                }
+                apiParts.push({ "text": finalPrompt });
+                apiParts.push({ "inlineData": { "mimeType": "image/png", "data": originalImageBase64.split(',')[1] } });
+                apiParts.push({ "inlineData": { "mimeType": "image/png", "data": maskImageBase64 } });
+                
+                payload = { contents: [{ parts: apiParts }], generationConfig: { responseModalities: ["IMAGE"] } };
 
             } else { // background mode
                 const backgroundDetails = document.getElementById('background-details').value;
                 const blurBackground = document.getElementById('blur-background-checkbox').checked;
-                if (!backgroundDetails) { showToast("Harap isi deskripsi background."); goToStep(2); return; }
+                if (!backgroundDetails) { showToast("Please describe the new background."); goToStep(2, () => updateEditModeUI()); return; }
                 let blurInstruction = blurBackground ? "Apply a natural and subtle background blur (bokeh effect) to the new background." : "";
                 const maskImageBase64 = maskCanvas.toDataURL('image/png').split(',')[1];
-                promptText = `INSTRUCTION: Replace the background of this image. The white areas in the provided mask indicate the foreground subject(s) that MUST be kept completely unchanged and in focus. Replace everything outside the white areas with a new background described as: ${backgroundDetails}. REALISM_RULES: ${realismRules} The new background must seamlessly blend with the foreground subject, matching the original photo's lighting, shadows, and color tone. ${blurInstruction}`;
-                payload = {
-                    contents: [{
-                        parts: [
-                            { "text": promptText },
-                            { "inlineData": { "mimeType": "image/png", "data": originalImageBase64.split(',')[1] } },
-                            { "inlineData": { "mimeType": "image/png", "data": maskImageBase64 } }
-                        ]
-                    }],
-                    generationConfig: { responseModalities: ["IMAGE"] }
-                };
+                const promptText = `INSTRUCTION: Replace the background of this image. The white areas in the provided mask indicate the foreground subject(s) that MUST be kept completely unchanged and in focus. Replace everything outside the white areas with a new background described as: ${backgroundDetails}. REALISM_RULES: ${realismRules} The new background must seamlessly blend with the foreground subject, matching the original photo's lighting, shadows, and color tone. ${blurInstruction}`;
+                payload = { contents: [{ parts: [ { "text": promptText }, { "inlineData": { "mimeType": "image/png", "data": originalImageBase64.split(',')[1] } }, { "inlineData": { "mimeType": "image/png", "data": maskImageBase64 } } ] }], generationConfig: { responseModalities: ["IMAGE"] } };
             }
             
             const apiKey = "AIzaSyDXyUU4B21GxpUZLoUJfxHruFBqbI-BIHk"; 
@@ -701,21 +703,16 @@
                 let retries = 3;
                 let response;
                 while (retries > 0) {
-                    response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (response.ok) { break; }
+                    response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (response.ok) break;
                     if (response.status === 429 || response.status >= 500) {
-                        console.log(`Request failed with status ${response.status}. Retrying...`);
                         await new Promise(resolve => setTimeout(resolve, (4 - retries) * 1000));
                         retries--;
                     } else {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                 }
-                if (!response.ok) { throw new Error(`Failed to get a successful response after several retries.`); }
+                if (!response.ok) throw new Error(`Failed to get a response after several retries.`);
                 const result = await response.json();
                 const candidate = result.candidates?.[0];
                 const generatedPart = candidate?.content?.parts?.find(p => p.inlineData);
@@ -729,13 +726,14 @@
                     resultContainer.style.display = 'grid';
                     actionButtons.style.display = 'flex';
                 } else {
-                    throw new Error('No valid image data found in API response.');
+                    const errorText = candidate?.content?.parts?.[0]?.text || 'Invalid image data in API response.';
+                    throw new Error(errorText);
                 }
             } catch (error) {
                 console.error('Error generating image:', error);
-                showToast('Terjadi kesalahan saat generate gambar. Coba lagi.');
+                showToast(`Error: ${error.message}`);
                 loadingContainer.style.display = 'none';
-                goToStep(2);
+                goToStep(2, () => updateEditModeUI());
             }
         }
 
@@ -756,7 +754,6 @@
         window.onload = function() {
             setupSlideshow('login-slideshow-container', loginSlideshowData, 'loginSlideIndex');
         };
-
     </script>
 </body>
 </html>
